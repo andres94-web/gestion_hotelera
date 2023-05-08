@@ -3,6 +3,8 @@ import { useState } from "react"
 import firebaseApp from "../firebase/Credenciales"
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth"
 import {getFirestore, doc, setDoc} from "firebase/firestore"
+import '../styles/login.css'
+
 const auth = getAuth(firebaseApp)
 const firestore = getFirestore(firebaseApp)
 
@@ -43,21 +45,25 @@ function Login() {
   }
 
   return (
-    <div>
-      <h1>{isRegistrando ? "Registrate" : "inicia sesion"}</h1>
+    <div class="container">
+    <div class="form-box">
+      <form class="form">
+        <span class="title">{isRegistrando ? "Registrate" : "Inicia sesion"}</span>
+        <span class="subtitle">{isRegistrando? "Crea una nueva cuenta" : "Recordemos tus datos"}</span>
+      </form>
+
+      <div class="form-container">
+        <form onSubmit={submitHandler}>
+          <label>
+            <input type="email" id="email" class="input" placeholder="Correo electronico"/>
+          </label>
+  
+        <label>
+          <input type="password" id="password" class="input" placeholder="Contraseña"/>
+        </label>
+
       
-      <form onSubmit={submitHandler}>
-        <label>
-          Correo Electronico:
-          <input type="email" id="email"/>
-        </label>
-
-        <label>
-          Contraseña:
-          <input type="password" id="password"/>
-        </label>
-
-        <label>
+        <label> 
           Rol:
           <select id="rol">
             <option value="admin">Administrador</option>
@@ -67,15 +73,18 @@ function Login() {
           </select>
         </label>
 
-        <input
+        <input 
           type="submit"
-          value={isRegistrando ? "registrar" : "iniciar sesion"}
-        />
-      </form>
-
-      <button onClick={()=> setIsRegistrando(!isRegistrando)}>
-        {isRegistrando ? "Ya tengo una cuenta" : "Quiero registrarme"}
+          value={isRegistrando ? "Crear" : "Iniciar"} class="iniciar" />
+        </form>
+      </div>
+      <div class="form-section">
+      <p>¿Qué quieres hacer?</p> 
+    <button onClick={()=> setIsRegistrando(!isRegistrando)}>
+        {isRegistrando ? "Ya tengo una cuenta" : "Registrarse"}
       </button>
+      </div>
+    </div>
     </div>
   )
 }
