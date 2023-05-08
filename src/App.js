@@ -1,25 +1,48 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from "react";
+
+import Home from "./screens/Home";
+import Login from "./screens/Login";
+
+import firebaseApp from "./firebase/Credenciales"
+import {getAuth, onAuthStateChanged} from "firebase/auth"
+import { getFirestore, doc, getDoc } from "firebase/firestore";
+const auth = getAuth(firebaseApp)
+const firestore = getFirestore(firebaseApp)
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+  const [user, setUser] = useState(null)
+
+  async function getRol(uid) {
+    const docuRef = doc(firestore, `usuarios/${uid}`)
+    const docuCifrada = await getDoc(docuRef)
+    const infoFinal = docuCifrada.data()
+    return infoFinal
+  }
+
+  function setUserWithFirebaseAndRol(usuarioFirebase) {
+    getRol(usuarioFirebase.uid).then((rol) => {
+      let userData = {
+        uid: usuarioFirebase.uid,
+        email: usuarioFirebase.email,
+        rol: rol.rol
+      }
+      setUser(userData)
+      console.log("userData final", userData);
+    })
+  }
+
+  onAuthStateChanged(auth, (usuarioFirebase)=>{
+    if (usuarioFirebase) {
+      if (!user) {
+        setUserWithFirebaseAndRol(usuarioFirebase)
+      }
+    } else {
+      setUser(null)
+    }
+  })
+
+  return <>{user ? <Home user={user}/> : <Login/>}</>
 }
 
 export default App;
