@@ -17,6 +17,7 @@ function App() {
     const docuRef = doc(firestore, `usuarios/${uid}`)
     const docuCifrada = await getDoc(docuRef)
     const infoFinal = docuCifrada.data()
+    console.log("infoFinal" ,infoFinal);
     return infoFinal
   }
 

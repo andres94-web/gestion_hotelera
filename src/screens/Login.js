@@ -1,7 +1,7 @@
 import { useState } from "react"
 
 import firebaseApp from "../firebase/Credenciales"
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth"
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword} from "firebase/auth"
 import {getFirestore, doc, setDoc} from "firebase/firestore"
 const auth = getAuth(firebaseApp)
 const firestore = getFirestore(firebaseApp)
@@ -31,7 +31,7 @@ function Login() {
     const password = e.target.elements.password.value
     const rol = e.target.elements.rol.value
 
-    console.log("submit", email, password, rol);
+    /* console.log("submit", email, password, rol); */
 
     if (isRegistrando) {
       //registrar
@@ -60,10 +60,10 @@ function Login() {
         <label>
           Rol:
           <select id="rol">
-            <option value="admin">Administrador</option>
             <option value="cajero">Cajero</option>
             <option value="geren">Gerente</option>
             <option value="recep">Recepcionista</option>
+            <option value="usuario">Administrador</option>
           </select>
         </label>
 
