@@ -32,27 +32,28 @@ function CajeroView() {
   }
   
   return (
-    <div>
+  <div className='contenedor-cajero'>
+    <div className='display-cajero'>
       <form onSubmit={handleSubmit}>
 
         <label>
           ID de la reserva:
-          <input type="text" value={id} onChange={handleIdChange} required/>
+          <input type="text" className='input' value={id} onChange={handleIdChange} required/>
         </label>
 
         <label>
           Pago realizado:
-          <input type="text" name="Pago" value={nuevosDatos.campo1} onChange={handleNuevosDatosChange} required/>
+          <input type="text" className='input' name="Pago" value={nuevosDatos.campo1} onChange={handleNuevosDatosChange} required/>
         </label>
 
         <button type="submit">Actualizar estado</button>
 
       </form>
       
-      <ul>
+      <ul className="list">
         {mostrarReserva.map((info) => (
-          <li key={info.id}>
-            <h3>{`reserva de ${info.nombre}`}</h3>
+          <li key={info.id}  className="list-item">
+            <h3>{`Reserva de ${info.nombre}`}</h3>
             <p>ID de la reserva: {info.id}</p>
             <p>Nombre: {info.nombre}</p>
             <p>Documento: {info.documento}</p>
@@ -66,6 +67,7 @@ function CajeroView() {
         ))}
       </ul>
     </div>
+  </div>
   )
 }
 

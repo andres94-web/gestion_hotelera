@@ -30,37 +30,39 @@ function GerenView() {
   }, []);
 
   return (
-    <div>
-      <form onSubmit={handleSubmit}>
+    <div className='contenedor-geren'>
+      <div className='display-geren'>
+        <form onSubmit={handleSubmit}>
 
-        <textarea value={informe} onChange={(e) => setInforme(e.target.value)} required>
-        </textarea>
+          <textarea id="informe" placeholder="Escribe un informe" cols="30" rows="5" value={informe} onChange={(e) => setInforme(e.target.value)} required>
+          </textarea>
 
-        <button type='submit'>generar informe</button>
-      </form>
-      
-      <ul>
-        {mostrarInforme.map((info) => (
-          <li key={info.id}>
-            <p>Informe: {info.informe}</p>
-          </li>
-        ))}
-      </ul>
-      <ul>
-        {mostrarReserva.map((info) => (
-          <li key={info.id}>
-            <h3>{`reserva de ${info.nombre}`}</h3>
-            <p>Nombre: {info.nombre}</p>
-            <p>Documento: {info.documento}</p>
-            <p>Fecha: {info.fecha}</p>
-            <p>Tipo de habitacion: {info.habitacion}</p>
-            <p>Cantidad de dias: {info.cantDias}</p>
-            <p>Pago realizado : {info.Pago}</p>
-            <p>Pedidos : {info.Pedidos}</p>
-            <p>Ingreso : {info.Ingreso}</p>
-          </li>
-        ))}
-      </ul>
+          <button type='submit'>generar informe</button>
+        </form>
+        
+        <ul  className="list">
+          {mostrarInforme.map((info) => (
+            <li key={info.id}  className="list-item">
+              <p>Informe: {info.informe}</p>
+            </li>
+          ))}
+        </ul>
+        <ul  className="list">
+          {mostrarReserva.map((info) => (
+            <li key={info.id}  className="list-item">
+              <h3>{`Reserva de ${info.nombre}`}</h3>
+              <p>Nombre: {info.nombre}</p>
+              <p>Documento: {info.documento}</p>
+              <p>Fecha: {info.fecha}</p>
+              <p>Tipo de habitacion: {info.habitacion}</p>
+              <p>Cantidad de dias: {info.cantDias}</p>
+              <p>Pago realizado : {info.Pago}</p>
+              <p>Pedidos : {info.Pedidos}</p>
+              <p>Ingreso : {info.Ingreso}</p>
+            </li>
+          ))}
+        </ul>
+      </div>
     </div>
   )
 }

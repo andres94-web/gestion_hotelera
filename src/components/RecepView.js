@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { addData, getReservas, actualizarDatos } from '../firebase/MetodosFirebase';
+import '../styles/estilos.css'
 
 
 function RecepView() {
@@ -74,27 +75,28 @@ function RecepView() {
   }
 
   return (
-    <div>
+  <div className='contenedor-recep'>
+    <div className='display-recep'>
       <form onSubmit={handleSubmit}>
         
         <label>
           Nombre al que se hace la reserva:
-          <input type="text" value={nombre} onChange={(e) => setNombre(e.target.value)} required/>
+          <input type="text" className='input' value={nombre} onChange={(e) => setNombre(e.target.value)} required/>
         </label>
 
         <label>
           Documento de identidad:
-          <input type="number" value={documento} onChange={(e) => setDocumento(e.target.value)} required/>
+          <input type="number" className='input' value={documento} onChange={(e) => setDocumento(e.target.value)} required/>
         </label>
 
         <label>
           Fecha de entrada:
-          <input type="date" value={fecha} onChange={(e) => setFecha(e.target.value)} required/>
+          <input type="date" className='input' value={fecha} onChange={(e) => setFecha(e.target.value)} required/>
         </label>
 
         <label>
           Cantidad de dias que ocupara la habitacion:
-          <input type="number" value={cantDias} onChange={(e) => setCantDias(e.target.value)} required/>
+          <input type="number" className='input' value={cantDias} onChange={(e) => setCantDias(e.target.value)} required/>
         </label>
 
         <label>
@@ -111,19 +113,19 @@ function RecepView() {
         <button type='submit'>Realizar reserva</button>
       </form>
 
-      <ul>
+      <ul className="list">
         {mostrarReserva.map((info) => (
-          <li key={info.id}>
-            <h3>{`reserva de ${info.nombre}`}</h3>
+          <li key={info.id} className="list-item">
+            <h3>{`Reserva de ${info.nombre}`}</h3>
             <p>ID cliente: {info.id}</p>
             <p>Nombre: {info.nombre}</p>
             <p>Documento: {info.documento}</p>
             <p>Fecha: {info.fecha}</p>
-            <p>Tipo de habitacion: {info.habitacion}</p>
-            <p>Cantidad de dias: {info.cantDias}</p>
+            <p>Tipo de habitación: {info.habitacion}</p>
+            <p>Cantidad de días: {info.cantDias}</p>
             <p>Pago realizado: {info.Pago}</p>
-            <p>Pedidos : {info.Pedidos}</p>
-            <p>Ingreso : {info.Ingreso}</p>
+            <p>Pedidos: {info.Pedidos}</p>
+            <p>Ingreso: {info.Ingreso}</p>
           </li>
         ))}
       </ul>
@@ -131,31 +133,32 @@ function RecepView() {
       <form onSubmit={handleSubmitt}>
         <label>
           ID de la reserva:
-          <input type="text" value={id} onChange={handleIdChange} required/>
+          <input type="text" className='input' value={id} onChange={handleIdChange} required/>
         </label>
 
         <label>
           Pedidos realizados:
-          <input type="text" name="Pedidos" value={nuevosDatos.campo1} onChange={handleNuevosDatosChange} required/>
+          <input type="text" className='input' name="Pedidos" value={nuevosDatos.campo1} onChange={handleNuevosDatosChange} required/>
         </label>
 
-        <button type="submit">Aagregar pedidos</button>
+        <button type="submit">Agregar pedidos</button>
       </form>
 
       <form onSubmit={handleSubmittt}>
         <label>
           ID de la reserva:
-          <input type="text" value={idd} onChange={handleIdChangee} required/>
+          <input type="text" className='input' value={idd} onChange={handleIdChangee} required/>
         </label>
 
         <label>
           Estado ocupacional de la habitacion:
-          <input type="text" name="Ingreso" value={nuevosDatoss.campo1} onChange={handleNuevosDatosChangee} required/>
+          <input type="text" className='input' name="Ingreso" value={nuevosDatoss.campo1} onChange={handleNuevosDatosChangee} required/>
         </label>
 
         <button type="submit">Agregar estado</button>
       </form>
     </div>
+  </div>
   )
 }
 

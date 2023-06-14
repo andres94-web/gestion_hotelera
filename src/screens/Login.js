@@ -3,6 +3,7 @@ import { useState } from "react"
 import firebaseApp from "../firebase/Credenciales"
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword} from "firebase/auth"
 import {getFirestore, doc, setDoc} from "firebase/firestore"
+import '../styles/estilos.css'
 const auth = getAuth(firebaseApp)
 const firestore = getFirestore(firebaseApp)
 
@@ -43,39 +44,46 @@ function Login() {
   }
 
   return (
-    <div>
-      <h1>{isRegistrando ? "Registrate" : "inicia sesion"}</h1>
-      
-      <form onSubmit={submitHandler}>
-        <label>
-          Correo Electronico:
-          <input type="email" id="email"/>
-        </label>
+    <div className="container">
+    <div className="form-box">
+      <form className="form">
+        <span className="title">{isRegistrando ? "Registrate" : "Inicia sesion"}</span>
+        <span className="subtitle">{isRegistrando? "Crea una nueva cuenta" : "Recordemos tus datos"}</span>
+      </form>
 
-        <label>
-          Contraseña:
-          <input type="password" id="password"/>
-        </label>
+      <div className="form-container">
+        <form onSubmit={submitHandler}>
+        <div class="input-group">
+          <label class="label">Correo electronico</label>
+          <input autocomplete="off" name="Email" id="email" class="input" type="email"/>
+    
+          <label class="label">Contraseña</label>
+          <input type="password" id="password" className="input"/>
+          </div>
+        <br></br>
 
-        <label>
+        <label className='label'>
           Rol:
           <select id="rol">
+            <option value="admin">Administrador</option>
             <option value="cajero">Cajero</option>
             <option value="geren">Gerente</option>
             <option value="recep">Recepcionista</option>
-            <option value="usuario">Administrador</option>
           </select>
         </label>
 
-        <input
+        <input 
           type="submit"
-          value={isRegistrando ? "registrar" : "iniciar sesion"}
-        />
-      </form>
-
-      <button onClick={()=> setIsRegistrando(!isRegistrando)}>
-        {isRegistrando ? "Ya tengo una cuenta" : "Quiero registrarme"}
+          value={isRegistrando ? "Crear" : "Iniciar"} className="iniciar" />
+        </form>
+      </div>
+      <div className="form-section">
+      <p>¿Qué quieres hacer?</p> 
+    <button onClick={()=> setIsRegistrando(!isRegistrando)}>
+        {isRegistrando ? "Ya tengo una cuenta" : "Registrarse"}
       </button>
+      </div>
+    </div>
     </div>
   )
 }
