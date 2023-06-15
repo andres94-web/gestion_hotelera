@@ -174,25 +174,18 @@ ul {
 }
 
 .content{
-  max-width: 100%;
-  max-height: 100%;
+  width: 100%;
+  height: 100%;
   margin: 0;
   padding: 0;
-}
-
-.display-admin-recep{
-  background-color: #ebf0f3;
-  display: grid;
-  max-height: 50%;
-  grid-gap: 11rem;
-  width: auto;
-}
-
-.display-cajero-geren{
   background-color: #1d4351;
-  width: auto;
+}
+
+.display{
+  width: 100%;
+  height: 100%;
   display: grid;
-  max-height: 50%;
+  grid-template-rows: auto;
 }
 
 .display .boton-admin{
@@ -225,21 +218,28 @@ ul {
   margin: 1rem;
 }
 
-.contenedor-recep, .contenedor-cajero, .contenedor-geren{
+ .contenedor-recep, .contenedor-cajero, .contenedor-geren{
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 2rem;
 }
 
-.display-recep, .display-cajero, .display-geren{
+.display-admin, .display-recep, .display-cajero, .display-geren{
   max-width: 70%;
   margin: 2rem;
 }
 
+.display-admin{
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+
+}
 .list {
   list-style-type: none;
-  padding: 0;
+  padding-top: 1rem;
   margin: 0;
 }
 

@@ -29,9 +29,9 @@ function AdminView({ user }) {
   return (
   <div className='content'>
     <div className='display'>
-      <div className='display-admin-recep'>
         <div className="card-admin">
           <h2>Vista y tareas del administrador</h2>
+          <div className='display-admin'>
           <input placeholder="Escribe un usuario" type="text" className='input' value={id} onChange={(e) => setId(e.target.value)} />
           <button className="boton-admin" onClick={() => handleClickEliminar('usuarios')}>Eliminar Usuario</button>
             <ul className="list">
@@ -44,11 +44,11 @@ function AdminView({ user }) {
               ))}
             </ul>
         </div>
+        </div>
           <div className ="card-recep">
           <h2>Vista y tareas del recepcionista</h2>
           <RecepView user = {user}/></div>
-    </div>
-        <div className='display-cajero-geren'>
+
           <div className ="card-cajero">
           <h2>Vista y tareas del cajero</h2>
           <CajeroView user = {user}/></div>
@@ -56,7 +56,6 @@ function AdminView({ user }) {
           <div className ="card-geren">
           <h2>Vista y tareas del gerente</h2>
           <GerenView user = {user}/></div>
-      </div>
     </div>
   </div>
   )
