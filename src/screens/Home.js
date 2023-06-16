@@ -53,7 +53,8 @@ function Home({user}) {
   return (
     <nav className="navbar">
       <div className="header">
-      <button className="navbar-button" onClick={() => signOut(auth)}> Cerrar sesion </button></div>
+        <button className="navbar-button" onClick={() => signOut(auth)}> Cerrar sesion </button>
+      </div>
       {view()}
     </nav>
   )
